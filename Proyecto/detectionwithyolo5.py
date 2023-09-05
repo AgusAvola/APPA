@@ -1,4 +1,4 @@
-import torch
+#import torch
 import pandas
 import cv2
 from ultralytics import YOLO
