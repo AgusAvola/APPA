@@ -1,3 +1,4 @@
+import llamar.py
 def comunicacion():
     def hablar(a:str):
         text = a
@@ -38,7 +39,7 @@ def comunicacion():
             hablar("no entendi")
             if(i>0):
                 hablar("Voy a llamar a una ambulancia")
-                import llamar
+                llamar()
                 break 
         except sr.WaitTimeoutError:
             print("se acabo el tiempo")

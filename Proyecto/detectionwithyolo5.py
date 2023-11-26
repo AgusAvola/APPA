@@ -3,7 +3,7 @@ import pandas
 import cv2
 from ultralytics import YOLO
 import math
-import comunicacion
+#import comunicacion
 # start webcam
 cap = cv2.VideoCapture(1)
 cap.set(3, 640)
