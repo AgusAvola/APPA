@@ -1,1 +1,1 @@
-Arte 3D: Dentro del ámbito del arte 3D, nuestro proyecto implica el diseño de una carcasa para el robot utilizando Blender, la misma tiene que ser encastrable y permitir organizar los componentes internos del robot de manera eficiente. El proyecto también incluye el diseño de un pastillero y un dispensador. Posteriormente, todos estos componentes se imprimirán utilizando impresoras 3D.
+
