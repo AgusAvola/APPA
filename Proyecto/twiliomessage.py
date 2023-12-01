@@ -1,17 +1,19 @@
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
-load_dotenv()
-account_sid = "ACb900d4d9fe6d798bcb965438dcce8c16"
-auth_token = "06dcbae469f09f541e6245116caef1d6"
-client = Client(account_sid, auth_token)
+import queries
+def sms(a:str):
+  load_dotenv()
+  account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+  auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+  client = Client(account_sid, auth_token)
 
-client = Client(account_sid, auth_token)
+  client = Client(account_sid, auth_token)
 
-message = client.messages.create(
-  from_='+14704666180',
-  body='quedan pocas pastillas',
-  to='+5491155881876'
-)
+  message = client.messages.create(
+    from_='+15074012437',
+    body='quedan pocas pastillas en el tubo '+a+".",
+    to='+5491155881876'
+  )
 
-print(message.sid)
+  print(message.sid)

@@ -3,7 +3,8 @@ import pandas
 import cv2
 from ultralytics import YOLO
 import math
-#import comunicacion
+import comunicacion
+import leer_calendario
 # start webcam
 cap = cv2.VideoCapture(1)
 cap.set(3, 640)
@@ -56,6 +57,7 @@ while True:
                 
            
     cv2.imshow('Webcam', img)
+    leer_calendario.main()
     if (x2-x1>y2-y1):
         comunicacion.comunicacion() 
     if cv2.waitKey(1) == ord('x'):

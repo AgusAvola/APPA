@@ -1,5 +1,5 @@
-import llamar.py
 def comunicacion():
+    import llamar
     def hablar(a:str):
         text = a
         engine.setProperty("rate", 150)
@@ -46,4 +46,3 @@ def comunicacion():
             hablar("Voy a llamar a una ambulancia")
             import llamar
             break
-comunicacion()

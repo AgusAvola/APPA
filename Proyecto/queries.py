@@ -16,9 +16,24 @@ conn=sql.connect(
     ssl_ca=''
 )
 
+ubicacion=""
+nombre=""
+edad=""
+tel=""
+pariente=""
 
 cursor = conn.cursor()
 cursor.execute("SELECT * FROM Paciente")
 result = cursor.fetchall()
-print(result)
 cursor.close()
+
+ubicacion=result[0][2]
+nombre=result[0][1]
+edad=result[0][3]
+
+cursor=conn.cursor()
+cursor.execute("SELECT * FROM Teldeemergencia")
+resultado=cursor.fetchall()
+cursor.close()
+tel=resultado[2][3]
+pariente=resultado[2][1]

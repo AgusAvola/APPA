@@ -1,5 +1,6 @@
 import time
 import serial
+import twiliomessage
 def comunicacionserial(a:str):
     print('Running')
     with serial.Serial("COM11",9600, timeout=1) as arduino:
@@ -16,8 +17,16 @@ def comunicacionserial(a:str):
                     if answer==b"Termino\r\n":
                         cmd="avanzar"
                     if answer==b"retroceder\r\n":
+                        cmd="salir"
+                    if answer== b"esperar a que tome la pastilla\r\n":
+                        cmd="entrar"
+                    if answer==b"cajon adentro\r\n":
                         cmd="volver"
                     if answer==b"girar\r\n":
+                        cmd="pastilla"
+                    if answer==b"Sin objeto\r\n":
+                        twiliomessage.sms(final)
+                    if answer==b"Sin objeto\r\n" or answer==b"Objeto detectado\r\n": 
                         if final=="1":
                             cmd="volverUnPaso"
                         if final=="2":
@@ -42,4 +51,3 @@ def comunicacionserial(a:str):
                         break
             except KeyboardInterrupt:
                 print("KeyboardInterrupt has been caught.")
-comunicacionserial("3")

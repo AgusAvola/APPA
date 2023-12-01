@@ -1,7 +1,9 @@
 import datetime
+import pyttsx3
 import os.path
 hora_actual=datetime.datetime.now()
 hora_formateada = hora_actual.strftime('%y/%m/%d %H:%M')
+import comunicacionserie
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -15,8 +17,9 @@ SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]
 
 def main():
   def hablar(a:str):
-        text = a
+        engine = pyttsx3.init() 
         engine.setProperty("rate", 150)
+        text = a
         engine.say(text)
         engine.runAndWait()
   """Shows basic usage of the Google Calendar API.
@@ -46,6 +49,8 @@ def main():
 
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + "Z"  # 'Z' indicates UTC time
+    now=now.split(':')
+    now= now[0]+":00:00.000000Z"
     print("Getting the upcoming 10 events")
     events_result = (
         service.events()
@@ -68,18 +73,21 @@ def main():
     for event in events:
       start = event["start"].get("dateTime")
       start= start.split('T')
-      fecha=start[0]
+      fecha=start[0].split('-')
+      anio=fecha[0].split('0')
+      anio=anio[1]
+      fecha=anio+'/'+fecha[1]+'/'+fecha[2]
       start=start[1].split('-')
-      start=start[0]
+      start=start[0].split(':')
+      start=start[0] +":"+ start[1]
       start=fecha+ " "+ start
+      print(start)
+      print(hora_formateada)
+      print(event["summary"])
       if start==hora_formateada:
         print(event["summary"])
+        comunicacionserie.comunicacionserial(event["summary"])
         hablar(event["description"])
 
   except HttpError as error:
     print(f"An error occurred: {error}")
-
-
-        
-if __name__ == "__main__":
-  main()
